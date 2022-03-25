@@ -1,5 +1,7 @@
 //Using Express Framework
 const express = require("express");
+//3rd Party Logger MiddleWare
+const morgan = require("morgan");
 
 //express app
 const app = express();
@@ -10,14 +12,11 @@ app.set("view engine", "ejs");
 //listen for requests
 app.listen(4556);
 
-// MiddleWare
-app.use((req, res, next) => {
-  console.log("NEW REQUEST MADE ===============>");
-  console.log("Host", req.hostname);
-  console.log("Path", req.path);
-  console.log("Method", req.method);
-  next();
-});
+//Static files MiddleWare by express
+app.use(express.static('public'))
+
+//logger MiddleWare
+app.use(morgan('dev'))
 
 app.get("/", (req, res) => {
   const blogs = [
@@ -26,12 +25,6 @@ app.get("/", (req, res) => {
     { title: "How to defeat bowser", snippet: "Lorem ipsum dolor sit amet consectetur" },
   ];
   res.render("index", { title: "Home", blogs });
-});
-
-// MiddleWare
-app.use((req, res, next) => {
-  console.log("Next MiddleWare **********");
-  next();
 });
 
 app.get("/about", (req, res) => {
