@@ -8,8 +8,15 @@ const app = express();
 app.set("view engine", "ejs");
 
 //listen for requests
-app.listen(4556, () => {
-  console.log("Server started listening on pot 4556");
+app.listen(4556);
+
+// MiddleWare
+app.use((req, res, next) => {
+  console.log("NEW REQUEST MADE ===============>");
+  console.log("Host", req.hostname);
+  console.log("Path", req.path);
+  console.log("Method", req.method);
+  next();
 });
 
 app.get("/", (req, res) => {
@@ -19,6 +26,12 @@ app.get("/", (req, res) => {
     { title: "How to defeat bowser", snippet: "Lorem ipsum dolor sit amet consectetur" },
   ];
   res.render("index", { title: "Home", blogs });
+});
+
+// MiddleWare
+app.use((req, res, next) => {
+  console.log("Next MiddleWare **********");
+  next();
 });
 
 app.get("/about", (req, res) => {
