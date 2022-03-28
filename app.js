@@ -5,6 +5,7 @@ const morgan = require("morgan");
 //mongoose to make mongodb atlas communication easy and better
 const mongoose = require("mongoose");
 
+//using express Router
 const blogRoutes = require("./routes/blogRoutes");
 
 //express app
