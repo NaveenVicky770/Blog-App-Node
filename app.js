@@ -42,7 +42,7 @@ app.get("/about", (req, res) => {
 });
 
 //blogRoutes
-app.use(blogRoutes)
+app.use("/blogs/", blogRoutes); //scoped blogRoutes -> use blogRoutes only when path matches /blogs first
 
 //404 page
 app.use((req, res) => {
