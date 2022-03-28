@@ -4,7 +4,7 @@ const express = require("express");
 const morgan = require("morgan");
 //mongoose to make mongodb atlas communication easy and better
 const mongoose = require("mongoose");
-//BLog Model
+//Blog Model
 const Blog = require("./models/blog");
 const { render } = require("express/lib/response");
 
